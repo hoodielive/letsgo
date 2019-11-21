@@ -1,0 +1,10 @@
+Notes/Terms/Helpful Information
+
+# Terms
+1. Decentralized Computing, is the allocation of resources, both hardware and software,
+   to each individual workstation, or office location. In contrast, centralized computing
+   exists when the majority of functions are carried out, or obtained from a remote centralized
+   location.
+2. Decentralized Internet, A loose grouping of services and protocols, its aim is to redistribute
+   online power to users and provide the possibility for collectivized ownership and censorship
+   resistance.
