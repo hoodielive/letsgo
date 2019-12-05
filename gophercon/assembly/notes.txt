@@ -1,0 +1,50 @@
+Assembly is not Go.
+
+With assembly there are no guarantees.
+
+We should forget about small efficiences, say about 97% of the time:
+premature optimization is the root of all evil. Yet we should not pass
+up our opportunites in that critical 3%. - Donald Knuth, 1974
+
+The Critical 3%?
+
+To take advantage of:
+	- Missed optimizations by the compiler.
+	- Special hardware instructions.
+
+Common use cases:
+	- Math compute kernels.
+	- System calls.
+	- Low-level Runtime details.
+	- Cryptography.
+
+Go Assembly Primer
+
+# BEGIN Code block
+package assembly
+
+func Add(x, y uint64) uint64 {
+	return x + y
+}
+
+# END Code Block
+
+# Command Line
+go build -o d-assembly.go
+go tool objdump d-assembly.go
+
+$ go tool objdump d-assembly.go
+TEXT %22%22.add(SB) gofile../Users/onibode/Clones/letsgo/gophercon/assembly/d-assembly.go
+  d-assembly.go:4	0x26a			488b442410		MOVQ 0x10(SP), AX
+  d-assembly.go:4	0x26f			488b4c2408		MOVQ 0x8(SP), CX
+  d-assembly.go:4	0x274			4801c8			ADDQ CX, AX
+  d-assembly.go:4	0x277			4889442418		MOVQ AX, 0x18(SP)
+  d-assembly.go:4	0x27c			c3			RET
+
+Problem Statement
+Code Generation
+The avo Library
+Examples
+	Dot Product
+	SHA-1
+Future
