@@ -9,4 +9,11 @@ func main() {
 	for key, value := range oleg {
 		fmt.Printf("%q is the key for the value %q\n", key, value)
 	}
+
+	keys := []string{}
+
+	for key := range oleg {
+		keys = append(keys, key)
+	}
+	fmt.Println("%q", keys)
 }
