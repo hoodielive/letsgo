@@ -3,6 +3,9 @@ package main
 import "fmt"
 
 func main() {
+	// rule of thumb: use var when variable is in a zero state and shorthand
+	// when its not.
+
 	var a int
 	var b string
 	var c float64
@@ -22,4 +25,8 @@ func main() {
 	fmt.Printf("bb is \t %T [%v]\n", bb, bb)
 	fmt.Printf("cc is \t %T [%v]\n", cc, cc)
 	fmt.Printf("dd is \t %T [%v]\n", dd, dd)
+
+	// specify type and perform a conversion || conversion over casting
+	aaa := int32(10)
+	fmt.Printf("aaa is \t %T [%v]\n", aaa, aaa)
 }
