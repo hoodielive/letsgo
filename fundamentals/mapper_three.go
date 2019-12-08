@@ -11,4 +11,6 @@ func main() {
 	atr["Congo"] = "Palo Mayombe"
 
 	fmt.Println(atr)
+	atr_online := map[string]string{"Haiti": "Vodou", "Yoruba": "Ifa", "Congo": "Palo Mayombe"}
+	fmt.Println(atr_online)
 }
