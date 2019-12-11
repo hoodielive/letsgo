@@ -1,4 +1,4 @@
-#Notes
+# Notes
 
 In go a pointer is represented by the *(asterisk) character followed by the type of the stored value.
 
