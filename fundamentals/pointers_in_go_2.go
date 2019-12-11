@@ -7,12 +7,13 @@ func zero(x int) {
 }
 
 func zeroPointer(xPtr *int) {
-	*xPtr = 0
+	*xPtr = 98
 }
 
 func main() {
 	x := 5
 	zero(x)
+	fmt.Println(x)
 	zeroPointer(&x)
 	fmt.Println(x)
 }
