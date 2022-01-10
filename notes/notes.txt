@@ -8,3 +8,194 @@ Notes/Terms/Helpful Information
 2. Decentralized Internet, A loose grouping of services and protocols, its aim is to redistribute
    online power to users and provide the possibility for collectivized ownership and censorship
    resistance.
+
+
+   Docker containers:
+
+   Images -> packages/templates
+   - Containers are built off of those packages.
+
+   Essential knowledge for CKAD:
+   1. Kubernetes architecture and concepts.
+   2. The kubectl command-line tool.
+   3. Docker Fundamentals.
+   4. The tools: YAML, Vim and Bash.
+
+# Kubernetes Primitive API
+
+1. api version
+2. kind
+3. metadata
+4. spec
+5. status
+
+
+apiVersion: v1
+kind: Pod
+metadata:
+ labels:
+  app: frontend
+ name: business-app
+spec:
+ containers:
+ - image: node:stretch-slim
+   name: nodejs
+   resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Never
+status: {}
+
+
+2 Ways to create:
+
+Imperative Approach
+kubectl -> Kubernetes Object
+
+Declarative
+kubectl -> YAML manifest -> Kubernetes object
+
+Knowledge of docker, container and registry - Basic Docker Commands
+Vim editing live objects
+Bash for writing shell complex commands
+
+Creating a Pod:
+kubectl run
+
+Inspecting a Pod:
+kubectl get pod and kubectl describe (awk is your friend)
+
+Rendering logs of the pod:
+kubectl logs
+
+Shelling into a pod:
+kubectl exec
+
+POD Lifecycle:
+1. Unknown - the state cannot be ascertained.
+2. Pending - Container(s) waiting to be created.
+3. Running - Container(s) running or starting/restarting.
+4. Succeeded - Container(s) terminated successfully.
+5. Failed - Container(s) terminated with error.
+
+Advanced Pod Configuration:
+1. Define environment variables.
+2. Define custom commands and args.
+3. Advanced config opts for pods/containers.
+4. Centralize config data.
+5. Roles and privileges.
+6. Define resource reqs and boundaries.
+7. Use service accts.
+
+
+# Centralize config data.
+Pod -> Use as env variable or mount as volume.
+  ConfigMap -> plain-text key-value pairs.
+  Secret -> base64-encoded key-value pairs.
+
+# Understanding Security contexts:
+1. Configure roles/privileges to reduce security risks.
+2. A sec context enforces rules.
+3. Declarable on pod or container level.
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: secured-pod
+spec:
+  securityContext:
+    runAsUser: 1000
+  containers:
+  - securityContext:
+    runAsGroup: 3000
+
+
+Create namespaces to subdivide system resources into various spaces.
+Defining Resource Quotas:
+NAMESPACE -> POD
+1. How many Pods can be created?
+2. How much memory can be consumed?
+3. How many CPU(s) can be consumed?
+
+Assigning a Service Account usually falls under role and responsiblity of administrator.
+
+- Provide an identity for processes that run in a pod.
+- Creat service acct object (administrator).
+
+What that looks like:
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+spec:
+  serviceAccountName: sa
+
+MultiContainer
+- Init containers and sidecars
+
+Init - similar to constructors and/or static blocks in oop.
+Know how to use them! They run before the app starts.
+
+Sidecar - enhances logic of the main app container. It implements the single responsiblity principle. Runs in its own container - shared volumes.
+
+ext.service [[ adapter pattern and ambassador pattern ]]
+Proxy communication with external (ext.service) service.
+
+Observability
+
+Probing, Monitoring, Debugging pods.
+
+Readiness Probe
+
+Debugging tools:
+
+kubectl get - inspect pod status
+kubectl describe - inspect pod events
+kubectl logs - inspect pod logs
+kubectl exec - shell into pods for low-level information
+
+Commercial offerings for monitoring is the most likely solution -> Prometheus,
+InfluxDB and Datadog are good candidates.
+
+Read Kubernetes documentation on monitoring.
+
+Minimal converage of topic on exam.
+
+Jobs and cronjobs -> selecting them with quieres.
+
+labels -> used for querying object from CLI and via spec.selector.
+
+annotations - > used as descriptive metadata.
+deployments - big topic!
+
+replicas: 3
+selector:
+  matchLabels:
+    app: my-deploy
+
+POD (replica 1)
+POD (replica 2)
+POD (replica 3)
+
+
+# Understand this and write bash scripts for it.
+Pods (infinite process)
+Job (one time process)
+cronjob (periodic process)
+
+# Services provide central network interface
+
+- Networking (services and their effects on accessiblity)
+Deeply understand:
+ClusterIP, NodePort, and LoadBalancer.
+
+# volumes
+1. Volume type - Secrets and configMaps.
+
+Kubernetes resource involved in binding a persistent volume to a POD.
+Mount a persistent mount to a pod.
+Verify correct binding.
+Practice creation of involved kubernetes object.
+Find relevant YAML snippets in Kubernetes documentation.
+
+
+
