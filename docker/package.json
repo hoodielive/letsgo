@@ -1,0 +1,18 @@
+{
+  "name": "lutto",
+  "version": "1.0.0",
+  "description": "Docker Encapsulation",
+  "main": "app.mjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "luciddeveloper"
+  },
+  "keywords": [
+    "docker"
+  ],
+  "author": "hoodielive",
+  "license": "ISC"
+}
